@@ -45,6 +45,12 @@ class MirketTestCase(unittest.TestCase):
         stats = self.mirket.get_stambleupon_stats(self.URL)
         self.assertGreaterEqual(stats.views, 1)
 
+    def test_stambleupon_invalid(self):
+        # Check a URL that has no views.
+        blog = "http://safkaninsan.blogspot.com.tr/"
+        stats = self.mirket.get_stambleupon_stats(blog)
+        self.assertEqual(stats.views, 0)
+
 
 if __name__ == "__main__":
     unittest.main()
