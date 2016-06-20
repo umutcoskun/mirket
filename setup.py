@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name="mirket",
-    version="0.1",
+    version="0.2",
 
     description="Get social network stats for a URL.",
 
@@ -16,6 +16,6 @@ setup(
     keywords=["social network", "restful api"],
     classifiers=[],
     install_requires=[
-        "requests",
+        "requests-futures",
     ]
 )
