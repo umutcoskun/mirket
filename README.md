@@ -1,2 +1,57 @@
 # Mirket
 Get social network stats for a URL.
+
+### Requirements
+```python
+pip3 install -r requirements.txt
+```
+
+### Usage
+```python
+mirket.get_stats(URL: str, networks: list=None)
+```
+
+Retrieve social stats for selected networks. If "networks" is None, you will get stats for all the available networks.
+
+Returns a dict that has networks as keys and social stats objects (like FacebookStats, PinterestStats etc. See `stats.py` for more) as values.
+
+---
+
+```python
+mirket.get_facebook_stats(URL: str)
+```
+
+Retrieve Facebook stats for a URL which are like shares, likes, comments and clicks. Returns FacebookStats object.
+
+---
+
+```python
+mirket.get_pinterest_stats(URL: str)
+```
+
+Retrieve Pinterest pin count for a URL. Returns PinterestStats object.
+
+---
+
+```python
+mirket.get_linkedin_stats(URL: str)
+```
+
+Retrieve LinkedIn share count for a URL. Returns LinkedInStats object.
+
+---
+
+```python
+mirket.get_stambleupon_stats(URL: str)
+```
+
+Retrieve StambleUpon view count for a URL. Returns StambleUponStats object.
+
+### Testing
+```python
+python3 tests.py
+```
+
+---
+
+License: GNU General Public License
