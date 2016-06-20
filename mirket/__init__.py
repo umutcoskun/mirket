@@ -199,9 +199,15 @@ class Mirket(object):
         if not data:
             raise Exception("No StambleUpon data found for the URL.")
 
+        if "views" in data["result"]:
+            views = int(data["result"]["views"])
+
+        else:
+            views = 0
+
         stats = StambleUponStats(
             data["result"]["url"],
-            int(data["result"]["views"]),
+            views,
         )
 
         return stats
