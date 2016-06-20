@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import re
 import json
 from urllib.parse import quote_plus
 
-import requests
+from requests_futures.sessions import FuturesSession
 
 from mirket.stats import (
     FacebookStats, PinterestStats, LinkedInStats, StumbleUponStats
@@ -13,16 +12,47 @@ from mirket.stats import (
 
 
 class Mirket(object):
-    _available_networks = {}
     headers = {"Connection": "close"}
 
     def __init__(self):
+        # Create a FuturesSession instance
+        # to make asynchronous requests.
+        self.session = FuturesSession()
+
+        # Index all callables to use with
+        # the `get_stats` function.
         self._available_networks = {
             "facebook": self.get_facebook_stats,
             "pinterest": self.get_pinterest_stats,
             "linkedin": self.get_linkedin_stats,
             "stumbleupon": self.get_stumbleupon_stats,
         }
+
+    def _make_request(self, API, URL):
+        """
+        Make a GET request to target API,
+        with the given URL as payload.
+
+        Arguments:
+            API -- Target API's endpoint to get stats.
+            URL -- Payload for request.
+
+        Returns:
+            response (object)
+        """
+
+        if isinstance(URL, list):
+            raise Exception("Only one URL can be used at once.")
+
+        elif not isinstance(URL, str):
+            raise TypeError("URL should be a string.")
+
+        future = self.session.get(
+            API.format(URL=quote_plus(URL)),
+            headers=self.headers,
+        )
+
+        return future.result()
 
     def get_stats(self, URL: str, networks: list=None) -> dict:
         """
@@ -73,16 +103,7 @@ class Mirket(object):
         API = ("https://api.facebook.com"
                "/method/links.getStats?urls={URL}&format=json")
 
-        if isinstance(URL, list):
-            raise Exception("Only one URL can be used at once.")
-
-        elif not isinstance(URL, str):
-            raise TypeError("URL should be a string.")
-
-        response = requests.get(
-            API.format(URL=quote_plus(URL)),
-            headers=self.headers,
-        )
+        response = self._make_request(API, URL)
 
         data = json.loads(response.text)
 
@@ -112,16 +133,7 @@ class Mirket(object):
         API = ("http://api.pinterest.com"
                "/v1/urls/count.json?&url={URL}")
 
-        if isinstance(URL, list):
-            raise Exception("Only one URL can be used at once.")
-
-        elif not isinstance(URL, str):
-            raise TypeError("URL should be a string.")
-
-        response = requests.get(
-            API.format(URL=quote_plus(URL)),
-            headers=self.headers,
-        )
+        response = self._make_request(API, URL)
 
         # Remove receiveCount() wrapper from the response.
         data = response.text[13:-1]
@@ -151,16 +163,7 @@ class Mirket(object):
         API = ("http://www.linkedin.com"
                "/countserv/count/share?url={URL}&format=json")
 
-        if isinstance(URL, list):
-            raise Exception("Only one URL can be used at once.")
-
-        elif not isinstance(URL, str):
-            raise TypeError("URL should be a string.")
-
-        response = requests.get(
-            API.format(URL=quote_plus(URL)),
-            headers=self.headers,
-        )
+        response = self._make_request(API, URL)
 
         data = json.loads(response.text)
 
@@ -188,16 +191,7 @@ class Mirket(object):
         API = ("http://www.stumbleupon.com"
                "/services/1.01/badge.getinfo?url={URL}")
 
-        if isinstance(URL, list):
-            raise Exception("Only one URL can be used at once.")
-
-        elif not isinstance(URL, str):
-            raise TypeError("URL should be a string.")
-
-        response = requests.get(
-            API.format(URL=quote_plus(URL)),
-            headers=self.headers,
-        )
+        response = self._make_request(API, URL)
 
         data = json.loads(response.text)
 
