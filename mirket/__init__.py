@@ -205,3 +205,11 @@ class Mirket(object):
         )
 
         return stats
+
+    @property
+    def available_networks(self) -> list:
+        """
+        Returns available social networks to use
+        with get_stats function.
+        """
+        return list(self.available_networks.keys())
