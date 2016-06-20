@@ -14,6 +14,7 @@ from mirket.stats import (
 
 class Mirket(object):
     _available_networks = {}
+    headers = {"Connection": "close"}
 
     def __init__(self):
         self._available_networks = {
@@ -78,9 +79,10 @@ class Mirket(object):
         elif not isinstance(URL, str):
             raise TypeError("URL should be a string.")
 
-        response = requests.get(API.format(
-            URL=quote_plus(URL)
-        ))
+        response = requests.get(
+            API.format(URL=quote_plus(URL)),
+            headers=self.headers,
+        )
 
         data = json.loads(response.text)
 
@@ -116,9 +118,10 @@ class Mirket(object):
         elif not isinstance(URL, str):
             raise TypeError("URL should be a string.")
 
-        response = requests.get(API.format(
-            URL=quote_plus(URL)
-        ))
+        response = requests.get(
+            API.format(URL=quote_plus(URL)),
+            headers=self.headers,
+        )
 
         # Remove receiveCount() wrapper from the response.
         data = response.text[13:-1]
@@ -154,9 +157,10 @@ class Mirket(object):
         elif not isinstance(URL, str):
             raise TypeError("URL should be a string.")
 
-        response = requests.get(API.format(
-            URL=quote_plus(URL)
-        ))
+        response = requests.get(
+            API.format(URL=quote_plus(URL)),
+            headers=self.headers,
+        )
 
         data = json.loads(response.text)
 
@@ -190,9 +194,10 @@ class Mirket(object):
         elif not isinstance(URL, str):
             raise TypeError("URL should be a string.")
 
-        response = requests.get(API.format(
-            URL=quote_plus(URL)
-        ))
+        response = requests.get(
+            API.format(URL=quote_plus(URL)),
+            headers=self.headers,
+        )
 
         data = json.loads(response.text)
 
