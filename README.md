@@ -36,7 +36,7 @@ Returns a dict that has networks as keys and social stats objects (like Facebook
 mirket.get_facebook_stats(URL: str) -> FacebookStats
 ```
 
-Retrieve Facebook stats for a URL which are like shares, likes, comments and clicks. Returns FacebookStats object.
+Retrieve Facebook stats for a URL which are shares, likes, comments and clicks. Returns FacebookStats object.
 
 ---
 
