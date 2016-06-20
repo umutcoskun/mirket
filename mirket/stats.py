@@ -62,9 +62,9 @@ class LinkedInStats(object):
         )
 
 
-class StambleUponStats(object):
+class StumbleUponStats(object):
     """
-    Stores StambleUpon's social stats.
+    Stores StumbleUpon's social stats.
     """
 
     def __init__(self, URL, views):

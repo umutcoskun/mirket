@@ -8,7 +8,7 @@ from urllib.parse import quote_plus
 import requests
 
 from mirket.stats import (
-    FacebookStats, PinterestStats, LinkedInStats, StambleUponStats
+    FacebookStats, PinterestStats, LinkedInStats, StumbleUponStats
 )
 
 
@@ -20,7 +20,7 @@ class Mirket(object):
             "facebook": self.get_facebook_stats,
             "pinterest": self.get_pinterest_stats,
             "linkedin": self.get_linkedin_stats,
-            "stambleupon": self.get_stambleupon_stats,
+            "stumbleupon": self.get_stumbleupon_stats,
         }
 
     def get_stats(self, URL: str, networks: list=None) -> dict:
@@ -170,15 +170,15 @@ class Mirket(object):
 
         return stats
 
-    def get_stambleupon_stats(self, URL: str) -> StambleUponStats:
+    def get_stumbleupon_stats(self, URL: str) -> StumbleUponStats:
         """
-        Retrieves StambleUpon view count for a URL.
+        Retrieves StumbleUpon view count for a URL.
 
         Arguments:
             URL
 
         Returns:
-            StambleUponStats (object)
+            StumbleUponStats (object)
         """
 
         API = ("http://www.stumbleupon.com"
@@ -197,7 +197,7 @@ class Mirket(object):
         data = json.loads(response.text)
 
         if not data:
-            raise Exception("No StambleUpon data found for the URL.")
+            raise Exception("No StumbleUpon data found for the URL.")
 
         if "views" in data["result"]:
             views = int(data["result"]["views"])
@@ -205,7 +205,7 @@ class Mirket(object):
         else:
             views = 0
 
-        stats = StambleUponStats(
+        stats = StumbleUponStats(
             data["result"]["url"],
             views,
         )

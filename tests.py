@@ -40,15 +40,15 @@ class MirketTestCase(unittest.TestCase):
         stats = self.mirket.get_linkedin_stats(self.URL)
         self.assertGreaterEqual(stats.shares, 1)
 
-    def test_stambleupon(self):
-        # Check URL has StambleUpon views.
-        stats = self.mirket.get_stambleupon_stats(self.URL)
+    def test_stumbleupon(self):
+        # Check URL has StumbleUpon views.
+        stats = self.mirket.get_stumbleupon_stats(self.URL)
         self.assertGreaterEqual(stats.views, 1)
 
-    def test_stambleupon_invalid(self):
+    def test_stumbleupon_invalid(self):
         # Check a URL that has no views.
         blog = "http://safkaninsan.blogspot.com.tr/"
-        stats = self.mirket.get_stambleupon_stats(blog)
+        stats = self.mirket.get_stumbleupon_stats(blog)
         self.assertEqual(stats.views, 0)
 
 
