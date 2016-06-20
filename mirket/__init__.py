@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import re
-import sys
 import json
 from urllib.parse import quote_plus
 
@@ -206,7 +205,3 @@ class Mirket(object):
         )
 
         return stats
-
-
-if __name__ == "__main__":
-    print(sys.argv)
