@@ -9,7 +9,8 @@ pip3 install git+https://github.com/umutcoskun/mirket.git
 
 ### Testing
 ```python
-python3 tests.py
+python3 tests/unit_tests.py
+python3 tests/stress_tests.py
 ```
 
 ### Usage
