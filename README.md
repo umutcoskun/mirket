@@ -8,6 +8,16 @@ pip3 install -r requirements.txt
 
 ### Usage
 ```python
+from mirket import Mirket
+
+mirket = Mirket()
+```
+
+Create a Mirket instance.
+
+---
+
+```python
 mirket.get_stats(URL: str, networks: list=None)
 ```
 
