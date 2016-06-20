@@ -28,7 +28,7 @@ class Mirket(object):
             "stumbleupon": self.get_stumbleupon_stats,
         }
 
-    def _make_request(self, API, URL):
+    def _make_request(self, API: str, URL: str) -> object:
         """
         Make a GET request to target API,
         with the given URL as payload.
