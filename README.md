@@ -1,9 +1,10 @@
 # Mirket
 Get social network stats for a URL.
 
-### Requirements
+### Installation
+* Development (current)
 ```python
-pip3 install -r requirements.txt
+pip3 install git+https://github.com/umutcoskun/mirket.git
 ```
 
 ### Testing
