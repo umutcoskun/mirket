@@ -33,6 +33,10 @@ class PinterestStats(object):
         self.URL = URL
         self.pins = pins
 
+    @property
+    def total_actions(self):
+        return self.pins
+
     def __str__(self):
         return "{} pins".format(
             self.pins,
@@ -48,6 +52,10 @@ class LinkedInStats(object):
         self.URL = URL
         self.shares = shares
 
+    @property
+    def total_actions(self):
+        return self.shares
+
     def __str__(self):
         return "{} shares".format(
             self.shares,
@@ -62,6 +70,10 @@ class StambleUponStats(object):
     def __init__(self, URL, views):
         self.URL = URL
         self.views = views
+
+    @property
+    def total_actions(self):
+        return self.views
 
     def __str__(self):
         return "{} views".format(
