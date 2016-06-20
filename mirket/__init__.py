@@ -13,10 +13,10 @@ from mirket.stats import (
 
 
 class Mirket(object):
-    available_networks = {}
+    _available_networks = {}
 
     def __init__(self):
-        self.available_networks = {
+        self._available_networks = {
             "facebook": self.get_facebook_stats,
             "pinterest": self.get_pinterest_stats,
             "linkedin": self.get_linkedin_stats,
@@ -43,17 +43,17 @@ class Mirket(object):
 
         # If "networks" is None, get all available networks.
         if networks is None:
-            networks = [network for network in self.available_networks.keys()]
+            networks = [network for network in self._available_networks.keys()]
 
         stats = {}
 
         # Get stats for selected or default networks.
         for network in networks:
-            if network not in self.available_networks:
+            if network not in self._available_networks:
                 raise ValueError("Network {} is not available."
                                  .format(network))
 
-            stats[network] = self.available_networks[network](URL)
+            stats[network] = self._available_networks[network](URL)
 
         return stats
 
@@ -212,4 +212,4 @@ class Mirket(object):
         Returns available social networks to use
         with get_stats function.
         """
-        return list(self.available_networks.keys())
+        return list(self._available_networks.keys())
