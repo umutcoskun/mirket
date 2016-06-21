@@ -121,10 +121,10 @@ You can use `stats.shares` and `stats.total_actions`.
 ##### StumbleUpon
 
 ```python
-mirket.get_stambleupon_stats(URL: str) -> StambleUponStats
+mirket.get_stumbleupon_stats(URL: str) -> StumbleUponStats
 ```
 
-Retrieve StambleUpon view count for a URL. Returns StambleUponStats object.
+Retrieve StumbleUpon view count for a URL. Returns StumbleUponStats object.
 
 Example:
 
@@ -132,7 +132,7 @@ Example:
 URL = ("http://flavorwire.com/"
        "446101/20-movies-guaranteed-to-make-you-feel-stupid")
 
-stats = mirket.get_stambleupon_stats(URL)
+stats = mirket.get_stumbleupon_stats(URL)
 print("This list viewed {} times on StumbleUpon".format(
     stats.views,
 ))
