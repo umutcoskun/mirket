@@ -44,6 +44,8 @@ print("Etsy has {} Facebook likes and {} Pinterest pins.".format(
 ))
 ```
 
+You can see `mirket.available_networks` (a list) for the networks that you can use with Mirket.
+
 ---
 
 ##### Facebook
