@@ -130,7 +130,7 @@ Example:
 
 ```python
 URL = ("http://flavorwire.com/"
-    "446101/20-movies-guaranteed-to-make-you-feel-stupid")
+       "446101/20-movies-guaranteed-to-make-you-feel-stupid")
 
 stats = mirket.get_stambleupon_stats(URL)
 print("This list viewed {} times on StumbleUpon".format(
