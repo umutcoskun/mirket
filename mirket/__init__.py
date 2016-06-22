@@ -264,3 +264,25 @@ class Mirket(object):
         )
 
         return URL
+
+    def get_gplus_share_link(self, URL: str, **kwargs) -> str:
+        """
+        Creates Google+ share link with the UTM parameters.
+
+        Arguments:
+            URL -- Link that you want to share.
+
+        Keyword Arguments:
+            You can pass query string parameters as keyword arguments.
+            Example: utm_source, utm_medium, utm_campaign etc...
+
+        Returns:
+            URL -- Google+ share link for the URL.
+        """
+
+        URL = "https://plus.google.com/share?url={URL}?{args}".format(
+            URL=quote_plus(URL),
+            args=quote_plus(urlencode(kwargs)),
+        )
+
+        return URL
