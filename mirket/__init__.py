@@ -236,6 +236,9 @@ class Mirket(object):
             URL -- Facebook share link for the URL.
         """
 
+        if "utm_source" not in kwargs:
+            kwargs["utm_source"] = "facebook"
+
         URL = "https://facebook.com/sharer/sharer.php?u={URL}?{args}".format(
             URL=quote_plus(URL),
             args=quote_plus(urlencode(kwargs)),
@@ -264,6 +267,9 @@ class Mirket(object):
             URL -- Pinterest share (pin) link for the URL.
         """
 
+        if "utm_source" not in kwargs:
+            kwargs["utm_source"] = "pinterest"
+
         link = ("http://pinterest.com/pin/create/button/"
                 "?media={media}&description={description}&url={URL}?{args}")
         link = link.format(
@@ -290,6 +296,9 @@ class Mirket(object):
             URL -- Twitter share link for the URL.
         """
 
+        if "utm_source" not in kwargs:
+            kwargs["utm_source"] = "twitter"
+
         URL = "https://twitter.com/home?status={URL}?{args}".format(
             URL=quote_plus(URL),
             args=quote_plus(urlencode(kwargs)),
@@ -311,6 +320,9 @@ class Mirket(object):
         Returns:
             URL -- Google+ share link for the URL.
         """
+
+        if "utm_source" not in kwargs:
+            kwargs["utm_source"] = "googleplus"
 
         URL = "https://plus.google.com/share?url={URL}?{args}".format(
             URL=quote_plus(URL),
