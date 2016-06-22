@@ -242,3 +242,25 @@ class Mirket(object):
         )
 
         return URL
+
+    def get_twitter_share_link(self, URL: str, **kwargs) -> str:
+        """
+        Creates Twitter share link with the UTM parameters.
+
+        Arguments:
+            URL -- Link that you want to share.
+
+        Keyword Arguments:
+            You can pass query string parameters as keyword arguments.
+            Example: utm_source, utm_medium, utm_campaign etc...
+
+        Returns:
+            URL -- Twitter share link for the URL.
+        """
+
+        URL = "https://twitter.com/home?status={URL}?{args}".format(
+            URL=quote_plus(URL),
+            args=quote_plus(urlencode(kwargs)),
+        )
+
+        return URL
