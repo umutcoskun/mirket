@@ -254,6 +254,7 @@ class Mirket(object):
         Arguments:
             URL -- Link that you want to share.
             media -- Media URL to pin.
+            description (optional) -- Describe your pin.
 
         Keyword Arguments:
             You can pass query string parameters as keyword arguments.
