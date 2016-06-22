@@ -243,6 +243,37 @@ class Mirket(object):
 
         return URL
 
+    def get_pinterets_share_link(self,
+                                 URL: str,
+                                 media: str,
+                                 description: str="",
+                                 **kwargs) -> str:
+        """
+        Creates Pinterest share (pin) link with the UTM parameters.
+
+        Arguments:
+            URL -- Link that you want to share.
+            media -- Media URL to pin.
+
+        Keyword Arguments:
+            You can pass query string parameters as keyword arguments.
+            Example: utm_source, utm_medium, utm_campaign etc...
+
+        Returns:
+            URL -- Pinterest share (pin) link for the URL.
+        """
+
+        link = ("http://pinterest.com/pin/create/button/"
+                "?media={media}&description={description}&url={URL}?{args}")
+        link = link.format(
+            URL=quote_plus(URL),
+            media=quote_plus(media),
+            description=quote_plus(description),
+            args=quote_plus(urlencode(kwargs)),
+        )
+
+        return link
+
     def get_twitter_share_link(self, URL: str, **kwargs) -> str:
         """
         Creates Twitter share link with the UTM parameters.
